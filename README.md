@@ -50,6 +50,12 @@ The **Autonomous Voice Controlled Arm Robot (A.V.C.A.R.)** is designed as a modu
 
 ### 🔹 Voice Control Module
 
+<p align="center">
+  <img src="./voice_control_subsystem.png" alt="Voice Control Subsystem" width="300"/>
+  <br/>
+  <em>Fig. 1 – Voice Control Subsystem</em>
+</p>
+
 - Captures user speech.  
 - Converts speech to text using **Speechmatics API**.  
 - Parses text into structured **PDDL goals** for the planner.  
@@ -57,6 +63,12 @@ The **Autonomous Voice Controlled Arm Robot (A.V.C.A.R.)** is designed as a modu
 ---
 
 ### 🔹 Perception Module
+
+<p align="center">
+  <img src="./perception_subsystem.png" alt="Perception Subsystem" width="300"/>
+  <br/>
+  <em>Fig. 2 – Perception Subsystem</em>
+</p>
 
 - Processes input from the robot’s camera.  
 - Detects and localizes objects using **YOLOv8**.  
@@ -66,6 +78,12 @@ The **Autonomous Voice Controlled Arm Robot (A.V.C.A.R.)** is designed as a modu
 
 ### 🔹 Task Planning Module
 
+<p align="center">
+  <img src="./task_planning_subsystem.png" alt="Task Planning Subsystem" width="400"/>
+  <br/>
+  <em>Fig. 3 – Task Planning Subsystem</em>
+</p>
+
 - Uses **PlanSys2** (PDDL-based planner).  
 - Consumes environment facts + user goals.  
 - Generates multi-step symbolic action sequences (e.g., pick, place, move).  
@@ -74,6 +92,12 @@ The **Autonomous Voice Controlled Arm Robot (A.V.C.A.R.)** is designed as a modu
 ---
 
 ### 🔹 Motion Planning & Execution Module
+
+<p align="center">
+  <img src="./arm_control_subsystem.png" alt="Arm Control Subsystem" width="500"/>
+  <br/>
+  <em>Fig. 4 – Arm Control Subsystem</em>
+</p>
 
 - Uses **MoveIt2** to compute collision-free trajectories.  
 - Executes actions in **Gazebo** (simulation) or on a physical robotic arm.  
@@ -85,7 +109,7 @@ The **Autonomous Voice Controlled Arm Robot (A.V.C.A.R.)** is designed as a modu
 <p align="center">
   <img src="./ROS_node_Architecture.png" alt="ROS2 Node Architecture" width="700"/>
   <br/>
-  <em>Fig. 2 – ROS2 nodes and communication between modules.</em>
+  <em>Fig. 5 – ROS2 nodes and communication between modules.</em>
 </p>
 
 The system is implemented as a collection of independent ROS2 nodes.  
@@ -124,11 +148,9 @@ Each node handles a specific function, and communication occurs through **ROS2 A
 
 ### 🔹 Data Flow
 <p align="center">
-  <p style="background-color:white;">
-  <img src="./data_flow_diagram.png" alt="Data Flow" width="700"/>
-  </p>
+  <img src="./data_flow_diagram.png" alt="Data Flow" width="500"/>
   <br/>
-  <em>Fig. 3 – Data flow from user voice command to robotic arm execution in Gazebo.</em>
+  <em>Fig. 6 – Data flow from user voice command to robotic arm execution in Gazebo.</em>
 </p>
 
 1. User gives a **voice command**.  
