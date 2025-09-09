@@ -48,17 +48,63 @@ The **Autonomous Voice Controlled Arm Robot (A.V.C.A.R.)** is designed as a modu
 
 ---
 
-### 🔹 High-Level Overview
+## 🏗️ System Architecture
+
+The **Autonomous Voice Controlled Arm Robot (A.V.C.A.R.)** is organized into four main modules.  
+Each module is implemented as an independent ROS2 node (or set of nodes) that communicates with others through ROS2 Actions and Services.  
+
+---
+
+### 🔹 Voice Control Module
 <p align="center">
-  <img src="docs/system-overview.png" alt="System Overview" width="700"/>
+  <img src="docs/voice-module.png" alt="Voice Control Module" width="500"/>
   <br/>
-  <em>Fig. 1 – High-level overview of A.V.C.A.R. showing the four main modules.</em>
+  <em>Fig. 1 – Voice Control Module.</em>
 </p>
 
-- **Voice Control Module**: Captures speech and converts it into text (Speechmatics API), then parses it into PDDL goals.  
-- **Perception Module**: Detects and localizes objects using YOLOv8; publishes detections as ROS2 messages.  
-- **Task Planning Module**: PlanSys2 generates symbolic action sequences (pick, place, move) and replans if needed.  
-- **Motion Planning & Execution Module**: MoveIt2 generates collision-free trajectories and executes them in Gazebo.  
+- Captures user speech.  
+- Converts speech to text using **Speechmatics API**.  
+- Parses text into structured **PDDL goals** for the planner.  
+
+---
+
+### 🔹 Perception Module
+<p align="center">
+  <img src="docs/perception-module.png" alt="Perception Module" width="500"/>
+  <br/>
+  <em>Fig. 2 – Perception Module.</em>
+</p>
+
+- Processes input from the robot’s camera.  
+- Detects and localizes objects using **YOLOv8**.  
+- Publishes detection results (labels, bounding boxes, confidence scores) as ROS2 messages.  
+
+---
+
+### 🔹 Task Planning Module
+<p align="center">
+  <img src="docs/planning-module.png" alt="Task Planning Module" width="500"/>
+  <br/>
+  <em>Fig. 3 – Task Planning Module.</em>
+</p>
+
+- Uses **PlanSys2** (PDDL-based planner).  
+- Consumes environment facts + user goals.  
+- Generates multi-step symbolic action sequences (e.g., pick, place, move).  
+- Supports **replanning** in case of failure.  
+
+---
+
+### 🔹 Motion Planning & Execution Module
+<p align="center">
+  <img src="docs/motion-module.png" alt="Motion Planning & Execution Module" width="500"/>
+  <br/>
+  <em>Fig. 4 – Motion Planning & Execution Module.</em>
+</p>
+
+- Uses **MoveIt2** to compute collision-free trajectories.  
+- Executes actions in **Gazebo** (simulation) or on a physical robotic arm.  
+- Provides real-time visualization in **RViz2**. 
 
 ---
 
@@ -69,12 +115,37 @@ The **Autonomous Voice Controlled Arm Robot (A.V.C.A.R.)** is designed as a modu
   <em>Fig. 2 – ROS2 nodes and communication between modules.</em>
 </p>
 
-- `voice_node`: Captures and transcribes audio input.  
-- `nlp_parser`: Converts text into structured PDDL goals.  
-- `yolo_node`: Publishes `/detected_objects` with bounding boxes and labels.  
-- `plansys2`: Consumes environment facts + goals and generates task plans.  
-- `moveit2`: Executes motion trajectories for the robotic arm.  
-- `gazebo`: Provides the simulation environment and feedback.  
+The system is implemented as a collection of independent ROS2 nodes.  
+Each node handles a specific function, and communication occurs through **ROS2 Actions and Services**.  
+
+- **Environment Server Node (Perception Module)**  
+  - Input: camera feed from the robot/simulator.  
+  - Extracts environment facts (objects, positions).  
+  - Shares data with both **PlanSys2** and **MoveIt2**.  
+
+- **Goal Server Node (Voice Command Interface)**  
+  - Input: user voice command (via speech recognition).  
+  - Converts transcribed text into structured task goals.  
+  - Sends goals to the **PlanSys2 Node**.  
+
+- **PlanSys2 Node (Task Planner)**  
+  - Core symbolic planner.  
+  - Consumes environment facts + user goals.  
+  - Generates multi-step symbolic action sequences.  
+
+- **Action Nodes (Task Executors & Feedback)**  
+  - Bridge between **PlanSys2** and **MoveIt2**.  
+  - Provide feedback to the planner.  
+  - Send task execution requests (pick, place, move) to **MoveIt2**.  
+
+- **MoveIt2 Node (Motion Planning & Execution)**  
+  - Receives execution requests from Action Nodes.  
+  - Plans collision-free trajectories using environment data.  
+  - Executes motion in **Gazebo** (simulation) or on the robotic arm (hardware).  
+
+- **ROS2 Humble Middleware**  
+  - Acts as the communication backbone.  
+  - Provides **Services** (e.g., Environment Service, Goal Service) and **Actions** (PlanSys2 ↔ Action Nodes ↔ MoveIt2).  
 
 ---
 
