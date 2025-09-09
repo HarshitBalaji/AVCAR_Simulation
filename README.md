@@ -44,11 +44,57 @@ For detailed methodology, architecture, and testing results, please refer to:
 ---
 
 ## ⚙️ System Architecture
-The system is divided into four core modules:
-1. **Voice Control Module** – Transcribes user speech and converts it into PDDL goals.  
-2. **Perception Module** – Detects and localizes objects using YOLOv8.  
-3. **Task Planning Module** – Uses PlanSys2 to generate and replan task sequences.  
-4. **Arm Control & Simulation Module** – Executes pick-and-place actions in Gazebo using MoveIt2.  
+The **Autonomous Voice Controlled Arm Robot (A.V.C.A.R.)** is designed as a modular ROS2 system that integrates **voice recognition, object perception, task planning, and motion execution** in a unified simulation pipeline.  
+
+---
+
+### 🔹 High-Level Overview
+<p align="center">
+  <img src="docs/system-overview.png" alt="System Overview" width="700"/>
+  <br/>
+  <em>Fig. 1 – High-level overview of A.V.C.A.R. showing the four main modules.</em>
+</p>
+
+- **Voice Control Module**: Captures speech and converts it into text (Speechmatics API), then parses it into PDDL goals.  
+- **Perception Module**: Detects and localizes objects using YOLOv8; publishes detections as ROS2 messages.  
+- **Task Planning Module**: PlanSys2 generates symbolic action sequences (pick, place, move) and replans if needed.  
+- **Motion Planning & Execution Module**: MoveIt2 generates collision-free trajectories and executes them in Gazebo.  
+
+---
+
+### 🔹 ROS2 Node Architecture
+<p align="center">
+  <img src="docs/node-architecture.png" alt="ROS2 Node Architecture" width="700"/>
+  <br/>
+  <em>Fig. 2 – ROS2 nodes and communication between modules.</em>
+</p>
+
+- `voice_node`: Captures and transcribes audio input.  
+- `nlp_parser`: Converts text into structured PDDL goals.  
+- `yolo_node`: Publishes `/detected_objects` with bounding boxes and labels.  
+- `plansys2`: Consumes environment facts + goals and generates task plans.  
+- `moveit2`: Executes motion trajectories for the robotic arm.  
+- `gazebo`: Provides the simulation environment and feedback.  
+
+---
+
+### 🔹 Data Flow
+<p align="center">
+  <img src="docs/data-flow.png" alt="Data Flow" width="700"/>
+  <br/>
+  <em>Fig. 3 – Data flow from user voice command to robotic arm execution in Gazebo.</em>
+</p>
+
+1. User gives a **voice command**.  
+2. **Voice Control Module** → converts audio to text → generates PDDL goal.  
+3. **Task Planning Module** → PlanSys2 generates symbolic action plan.  
+4. **Perception Module** → YOLOv8 provides detected objects to the planner.  
+5. **Motion Planning & Execution Module** → MoveIt2 generates trajectories.  
+6. **Gazebo & RViz2** → simulate and visualize execution.  
+
+---
+
+📌 **Scalability:** This modular design allows easy extension — e.g., swapping the simulated camera with a real one, expanding the action set in the planner, or deploying the same control pipeline to a physical robotic arm.
 
 ---
 
