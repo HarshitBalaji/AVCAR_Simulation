@@ -50,7 +50,7 @@ The **Autonomous Voice Controlled Arm Robot (A.V.C.A.R.)** is designed as a modu
 
 ### 🔹 Voice Control Module
 <p align="center">
-  <img src="docs/voice-module.png" alt="Voice Control Module" width="500"/>
+  <img src="./voice_control_subsystem.png" alt="Voice Control Module" width="500"/>
   <br/>
   <em>Fig. 1 – Voice Control Module.</em>
 </p>
@@ -63,7 +63,7 @@ The **Autonomous Voice Controlled Arm Robot (A.V.C.A.R.)** is designed as a modu
 
 ### 🔹 Perception Module
 <p align="center">
-  <img src="docs/perception-module.png" alt="Perception Module" width="500"/>
+  <img src="./perception_subsystem.png" alt="Perception Module" width="500"/>
   <br/>
   <em>Fig. 2 – Perception Module.</em>
 </p>
@@ -76,7 +76,7 @@ The **Autonomous Voice Controlled Arm Robot (A.V.C.A.R.)** is designed as a modu
 
 ### 🔹 Task Planning Module
 <p align="center">
-  <img src="docs/planning-module.png" alt="Task Planning Module" width="500"/>
+  <img src="./task_planning_subsystem.png" alt="Task Planning Module" width="500"/>
   <br/>
   <em>Fig. 3 – Task Planning Module.</em>
 </p>
@@ -90,7 +90,7 @@ The **Autonomous Voice Controlled Arm Robot (A.V.C.A.R.)** is designed as a modu
 
 ### 🔹 Motion Planning & Execution Module
 <p align="center">
-  <img src="docs/motion-module.png" alt="Motion Planning & Execution Module" width="500"/>
+  <img src="./arm_control_subsystem.png" alt="Motion Planning & Execution Module" width="500"/>
   <br/>
   <em>Fig. 4 – Motion Planning & Execution Module.</em>
 </p>
@@ -103,7 +103,7 @@ The **Autonomous Voice Controlled Arm Robot (A.V.C.A.R.)** is designed as a modu
 
 ### 🔹 ROS2 Node Architecture
 <p align="center">
-  <img src="docs/node-architecture.png" alt="ROS2 Node Architecture" width="700"/>
+  <img src="docs/ROS_node_architecture.png" alt="ROS2 Node Architecture" width="700"/>
   <br/>
   <em>Fig. 2 – ROS2 nodes and communication between modules.</em>
 </p>
