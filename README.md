@@ -21,7 +21,7 @@ This work demonstrates the feasibility of combining **AI perception**, **symboli
 
 ## 🎥 Demo
 A short video demonstration of the project can be viewed here:  
-👉 [Demo Video](<./AVCAR_demo.webm)  
+👉 [Demo Video](https://drive.google.com/drive/folders/1aan6W1st8EKGyxNArUFpwzw4T1U_A5wY?usp=sharing)  
 
 ---
 
