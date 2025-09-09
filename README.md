@@ -124,7 +124,9 @@ Each node handles a specific function, and communication occurs through **ROS2 A
 
 ### 🔹 Data Flow
 <p align="center">
-  <img src="./data_flow_diagram.png" alt="Data Flow" width="700" style="background-color:white;"/>
+  <p style="background-color:white;">
+  <img src="./data_flow_diagram.png" alt="Data Flow" width="700"/>
+  </p>
   <br/>
   <em>Fig. 3 – Data flow from user voice command to robotic arm execution in Gazebo.</em>
 </p>
