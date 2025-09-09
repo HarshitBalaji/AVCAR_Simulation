@@ -68,10 +68,10 @@ The system is divided into four core modules:
 ---
 
 ## 👨‍💻 Team
-- [Chaitra Sri Naidu](#)  
-- [S Guru Prasad](#)  
-- [Sai Harshit B](#)  
-- [Vigneshwaran P S](#)  
+- [Chaitra Sri Naidu](https://github.com/chytra3)  
+- [S Guru Prasad](https://github.com/Guru-Prasad-2002)  
+- [Sai Harshit B](https://github.com/HarshitBalaji)  
+- [Vigneshwaran P S](https://github.com/Vigneshwaran30)  
 
 Under the guidance of **Dr. Ambika G N**, Assistant Professor, Dept. of CSE, BMSIT&M.
 
