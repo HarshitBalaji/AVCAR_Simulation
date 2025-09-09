@@ -48,13 +48,6 @@ The **Autonomous Voice Controlled Arm Robot (A.V.C.A.R.)** is designed as a modu
 
 ---
 
-## 🏗️ System Architecture
-
-The **Autonomous Voice Controlled Arm Robot (A.V.C.A.R.)** is organized into four main modules.  
-Each module is implemented as an independent ROS2 node (or set of nodes) that communicates with others through ROS2 Actions and Services.  
-
----
-
 ### 🔹 Voice Control Module
 <p align="center">
   <img src="docs/voice-module.png" alt="Voice Control Module" width="500"/>
